@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nosso Carrossel - 11 Meses</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            text-align: center;
+            background-color: #f9f9f9;
+        }
+
+        h1 {
+            color: #333;
+            font-size: 3rem;
+            margin-top: 50px;
+        }
+
+        #inicio {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #f3f3f3;
+        }
+
+        p {
+            font-size: 1.5rem;
+            color: #555;
+            margin-bottom: 30px;
+        }
+
+        .btn-coracao {
+            background: none;
+            border: none;
+            cursor: pointer;
+            position: relative;
+            width: 100px;
+            height: 90px;
+        }
+
+        .btn-coracao .coracao {
+            width: 100px;
+            height: 90px;
+            background-color: red;
+            position: relative;
+            transform: rotate(-45deg);
+            transition: transform 0.3s ease;
+        }
+
+        .btn-coracao .coracao::before, 
+        .btn-coracao .coracao::after {
+            content: "";
+            width: 100px;
+            height: 90px;
+            background-color: red;
+            border-radius: 50%;
+            position: absolute;
+        }
+
+        .btn-coracao .coracao::before {
+            top: -50px;
+            left: 0;
+        }
+
+        .btn-coracao .coracao::after {
+            left: 50px;
+            top: 0;
+        }
+
+        .btn-coracao:hover .coracao {
+            transform: rotate(-45deg) scale(1.2);
+        }
+
+        .texto-botao {
+            position: absolute;
+            top: 120%;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 1.2rem;
+            color: #333;
+        }
+
+        .carrossel-container {
+            position: relative;
+            max-width: 800px;
+            margin: auto;
+        }
+
+        .slides {
+            display: flex;
+            overflow: hidden;
+        }
+
+        .slide {
+            display: none;
+            flex-shrink: 0;
+            width: 100%;
+        }
+
+        .slide img, .slide video {
+            width: 100%;
+            max-height: 500px;
+            object-fit: cover;
+        }
+
+        .slide p {
+            font-size: 1.2rem;
+            margin-top: 10px;
+        }
+
+        .active {
+            display: block;
+        }
+
+        .prev, .next {
+            cursor: pointer;
+            position: absolute;
+            top: 50%;
+            width: auto;
+            padding: 16px;
+            margin-top: -22px;
+            color: white;
+            background-color: rgba(0,0,0,0.5);
+            border: none;
+            font-size: 18px;
+            transition: 0.6s ease;
+        }
+
+        .prev:hover, .next:hover {
+            background-color: rgba(0,0,0,0.8);
+        }
+
+        .prev {
+            left: 0;
+        }
+
+        .next {
+            right: 0;
+        }
+
+        .texto-final {
+            padding: 20px;
+            font-size: 1.4rem;
+        }
+    </style>
+</head>
+<body>
+    <!-- Tela inicial -->
+    <div id="inicio" class="inicio-container">
+        <h1>Feliz 11 Meses, Amor!</h1>
+        <p>Vamos relembrar nossos momentos juntos? Clique no coração abaixo para começar!</p>
+        <button class="btn-coracao" onclick="iniciarCarrossel()">
+            <div class="coracao"></div>
+            <span class="texto-botao">Clique Aqui!</span>
+        </button>
+    </div>
+
+    <!-- Carrossel -->
+    <div id="carrossel" class="carrossel-container" style="display: none;">
+        <div class="slides">
+            <!-- Slide 1 - Primeiro Encontro -->
+            <div class="slide active">
+                <img src="imagem1.jpg" alt="Primeiro encontro">
+                <p>Primeiro encontro</p>
+            </div>
+            <!-- Slide 2 - Quando eu te assumi -->
+            <div class="slide">
+                <video src="video1.mp4" controls></video>
+                <p>Quando eu te assumi (por livre e espontânea pressão)</p>
+            </div>
+            <!-- Slide 3 - Nosso "sim" -->
+            <div class="slide">
+                <img src="imagem2.jpg" alt="Nosso sim">
+                <p>Nosso "sim"</p>
+            </div>
+            <!-- Slide 4 - Eu desfilando -->
+            <div class="slide">
+                <video src="video2.mp4" controls></video>
+                <p>Eu desfilando com a minha cicatriz</p>
+            </div>
+            <!-- Slide 5 - Primeiro Fim de Ano -->
+            <div class="slide">
+                <img src="imagem3.jpg" alt="Primeiro fim de ano juntos">
+                <p>Nosso primeiro Fim de Ano Juntos</p>
+            </div>
+            <!-- Slide 6 - Primeira viagem sozinhos -->
+            <div class="slide">
+                <img src="imagem4.jpg" alt="Primeira viagem">
+                <p>Nossa primeira viagem "sozinhos"</p>
+            </div>
+            <!-- Slide 7 - Encontrinho -->
+            <div class="slide">
+                <img src="imagem5.jpg" alt="Encontrinho">
+                <p>Encontrinho</p>
+            </div>
+            <!-- Slide 8 - Casa da Mãezinha -->
+            <div class="slide">
+                <img src="imagem6.jpg" alt="Na casa da Mãezinha">
+                <p>A gente na casa da Mãezinha</p>
+            </div>
+            <!-- Slide 9 - Foto favorita -->
+            <div class="slide">
+                <img src="imagem7.jpg" alt="Foto favorita">
+                <p>Foto que eu gosto (evento também kkk)</p>
+            </div>
+            <!-- Slide 10 - BF Trip -->
+            <div class="slide">
+                <img src="imagem8.jpg" alt="BF Trip">
+                <p>BF Trip</p>
+            </div>
+            <!-- Slide 11 - Oi Mamãe -->
+            <div class="slide">
+                <img src="imagem9.jpg" alt="Oi Mamãe">
+                <p>Oi Mamãe (nosso gordinho kkk)</p>
+            </div>
+            <!-- Slide 12 - Swinguinho -->
+            <div class="slide">
+                <img src="imagem10.jpg" alt="Swinguinho">
+                <p>A gente e o pessoal do swinguinho kkkk</p>
+            </div>
+        </div>
+
+        <!-- Botões de Navegação -->
+        <button class="prev" onclick="mudarSlide(-1)">&#10094;</button>
+        <button class="next" onclick="mudarSlide(1)">&#10095;</button>
+    </div>
+
+    <!-- Seção Final de Texto -->
+    <div id="final" class="texto-final" style="display: none;">
+        <h2>Mensagem de Amor</h2>
+        <p>Desculpa ter demorado tanto pra fazer um programinha pra vc amor, mas espero que você tenha gostado!
+            tentei pegar algumas lembranças, mas são 11 meses que lembro de cada momento, por que, cada um deles são especiais por ter você partilhando a vida comigo, obrigado por estar comigo, por se preocupar e cuidar de mim, sei que não sou o melhor namorado do mundo, que já te magoei muito, mas tenho mudado, pq não há nada nesse mundo que eu mais quero, do que ter vc para sempre MEU AMOR 
+            
+            EU TE AMO </p>
+    </div>
+
+    <script>
+        let currentSlide = 0;
+        const slides = document.querySelectorAll('.slide');
+        const carrossel = document.getElementById('carrossel');
+        const inicio = document.getElementById('inicio');
+        const final = document.getElementById('final');
+
+        function iniciarCarrossel() {
+            inicio.style.display = 'none';
+            carrossel.style.display = 'block';
+        }
+
+        function mudarSlide(direction) {
+            slides[currentSlide].classList.remove('active');
+            currentSlide = (currentSlide + direction + slides.length) % slides.length;
+            slides[currentSlide].classList.add('active');
+
+            if (currentSlide === slides.length - 1) {
+                setTimeout(() => {
+                    carrossel.style.display = 'none';
+                    final.style.display = 'block';
+                }, 1000);
+            }
+        }
+    </script>
+</body>
+</html>
